@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+  Liparates - {{ service.title }}
+{% endblock %}
+
+{% block pagetitle %}
+  {{ service.title }}
+  <hr />
+{% endblock %}
+
+{% block mainbody %}
+  <div class="row">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Title</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="title" type="text" class="form-control" id="title" value="{{ service.title }}" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="Description" class="col-md-4 col-lg-3 col-form-label">Description</label>
+            <div class="col-md-8 col-lg-9">
+              <textarea name="description" class="form-control" id="title">{{ service.description }}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit"><i class="bi bi-plus"></i>Submit</button>
+    </form>
+  </div>
+{% endblock %}

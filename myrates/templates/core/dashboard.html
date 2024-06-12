@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+  Liparates - Performance Dashboard
+{% endblock %}
+{% block pagetitle %}
+  Performance Dashboard
+{% endblock %}
+
+{% block mainbody %}
+  <div class="row">
+    <div class="col-sm-12 col-md-3 col-lg-3 animate__bounceIn">
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="card-title">Total Enquiries</div>
+          <h3>{{ total_enquiries }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 col-lg-3 animate__bounceIn">
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="card-title">New</div>
+          <h3>{{ new }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 col-lg-3 animate__bounceIn">
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="card-title">Queued</div>
+          <h3>{{ queued }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 col-lg-3 animate__bounceIn">
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="card-title">Closed</div>
+          <h3>{{ closed }}</h3>
+        </div>
+      </div>
+    </div>
+    <hr />
+  </div>
+{% endblock %}

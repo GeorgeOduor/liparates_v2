@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+  Liparates - Payment Updates
+{% endblock %}
+{% block pagetitle %}
+  Payment Updates
+{% endblock %}
+
+{% block mainbody %}
+  <div class="row">
+    <div class="card-body">
+      <!-- Bordered Tabs Justified -->
+      {% comment %}upload mpesa statement pdf{% endcomment %}
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Upload M-Pesa Statement</div>
+            </div>
+            <div class="card-body">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <label for="upload-statement">Upload Statement</label>
+                      <input name="upload-statement" type="file" class="form-control" id="upload-statement" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <label for="upload-statement">Statement Password</label>
+                      <input type="text" name="statement-password" class="form-control" id="statement-password" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-upload"></i> Upload</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Bordered Tabs Justified -->
+    </div>
+  </div>
+{% endblock %}

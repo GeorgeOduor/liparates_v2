@@ -1,0 +1,52 @@
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="row mb-3 animate__bounceIn">
+    <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Company Name</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="company" type="text" class="form-control" id="firstName" value="{{ company.name }}" />
+    </div>
+  </div>
+  <div class="row mb-3 animate__bounceIn">
+    <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Company Address</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="address" type="text" class="form-control" id="firstName" value="{{ company.address }}" />
+    </div>
+  </div>
+  <div class="row mb-3 animate__bounceIn">
+    <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Mobile Phone</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="mobile" type="text" class="form-control" id="firstName" value="{{ company.mobile }}" />
+    </div>
+  </div>
+  <div class="row mb-3 animate__bounceIn">
+    <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Email Address</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="email" type="text" class="form-control" id="firstName" value="{{ company.email }}" />
+    </div>
+  </div>
+  <fieldset>
+    <legend class="col-form-label col-sm-2 pt-0 animate__bounceIn">Payment Details</legend>
+    <div class="row mb-3 animate__bounceIn">
+      <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Pay Bill</label>
+      <div class="col-md-8 col-lg-9">
+        <input name="paybill" type="text" class="form-control" id="payBill" value="{{ company.paybill }}" />
+      </div>
+    </div>
+    <div class="row mb-3 animate__bounceIn">
+      <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Account Number</label>
+      <div class="col-md-8 col-lg-9">
+        <input name="accountno" type="text" class="form-control" id="payBill" value="{{ company.accountno }}" />
+      </div>
+    </div>
+    <div class="row mb-3 animate__bounceIn">
+      <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Till Number</label>
+      <div class="col-md-8 col-lg-9">
+        <input name="tillno" type="text" class="form-control" id="payBill" value="{{ company.tillno }}" />
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="text-center animate__bounceIn">
+    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Changes</button>
+  </div>
+</form>

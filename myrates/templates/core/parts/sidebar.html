@@ -1,0 +1,58 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    {% if user.is_staff %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'core:performance' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+    {% endif %}
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'core:services' %}">
+        <i class="bi bi-grid"></i>
+        <span>Our Services</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'core:myapplications' %}">
+        <i class="bi bi-grid"></i>
+        {% if user.is_staff %}
+          <span>Applications Received</span>
+        {% else %}
+          <span>My Applications</span>
+        {% endif %}
+      </a>
+    </li>
+    {% if user.is_staff %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'core:pricing' %}">
+          <i class="bi bi-grid"></i>
+          <span>Update Pricing</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'core:companyProfile' %}">
+          <i class="bi bi-grid"></i>
+          <span>Company Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'core:payments' %}">
+          <i class="bi bi-grid"></i>
+          <span>Update Payments</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% comment %} <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"><i class="bi bi-menu-button-wide"></i><span>My Applications</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-tooltips.html"><i class="bi bi-circle"></i><span>Tooltips</span></a>
+        </li>
+      </ul>
+    </li> {% endcomment %}
+    <!-- End Components Nav -->
+  </ul>
+</aside>

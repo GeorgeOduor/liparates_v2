@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}
+  Liparates - Aplication Details
+{% endblock %}
+{% block pagetitle %}
+  Application Details - INV0012070000062
+{% endblock %}
+
+{% block mainbody %}
+  <section class="wrapper-invoice">
+    <!-- switch mode rtl by adding class rtl on invoice class -->
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-8">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        {% include 'core/parts/invoice_template.html' %}
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="car">
+          <div class="card-heade">
+            <h5 class="card-title">Associated Files</h5>
+            <p class="text-muted">Click to download</p>
+          </div>
+          <div class="card-body">
+            {% with files_dict=application.filesUploaded|associated_files %}
+              {% for filename, path in files_dict.items %}
+                <a class="btn btn-primary btn-sm mb-2" href="/media/{{ path }}" download="{{ filename }}"><i class="fa fa-download"></i> {{ filename }}</a>
+              {% endfor %}
+            {% endwith %}
+            <hr />
+            {% if user.is_staff %}
+              <h5 class="card-title">Processing Status</h5>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <select name="resolution" id="" class="form-select form-control">
+                  <option value="">Select Status</option>
+                  {% if application.resolution == 'Queued' %}
+                    <option value="Queued" selected>Queued</option>
+                  {% else %}
+                    <option value="Queued">Queued</option>
+                  {% endif %}
+                  {% if application.resolution == 'Closed' %}
+                    <option value="Closed" selected>Closed</option>
+                  {% else %}
+                    <option value="Closed">Closed</option>
+                  {% endif %}
+                </select>
+                {% if application.resolution == 'Queued' %}
+                  <label for="invoice" class="form-label mt-3">Upload client invoice</label>
+                  <input type="file" name="invoice" id="invoice" class="form-control" required />
+                {% endif %}
+                {% if application.resolution != 'Closed' %}
+                  <button class="btn btn-primary btn-sm mt-2" type="submit"><i class="bi bi-plus"></i>Submit</button>
+                {% endif %}
+              </form>
+              <hr />
+            {% else %}
+              <h5 class="card-title">Payment Status:</h5>
+              <div class="div">
+                <span id="payment-badge" class="badge"><i id="payment-icon" class="bi me-1"></i> {{ application.paymentStatus }}</span>
+              </div>
+              {% if application.paymentStatus|in_list:'Pending,Unpaid,Declined' %}
+                <button class="btn btn-primary btn-sm mt-2" type="button" data-bs-toggle="modal" data-bs-target="#pay"><i class="bi bi-wallet"></i>Pay</button>
+              {% endif %}
+              {% if application.resolution == 'Closed' %}
+                <hr />
+                <h5 class="card-title">Processing Status:</h5>
+                <p>
+                  Your <strong>{{ application.service.title }}</strong> invoice is available for download.
+                </p>
+                <a href="/media/{{ application.invoice }}" download="{{ application.invoice }}" class="btn btn-primary btn-sm mt-2"><i class="bi bi-download"></i> Download</a>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include 'core/modals/secpaymentmodal.html' %}
+  <script>
+    const paymentBadgeElem = document.getElementById('payment-badge')
+    const paymentIconElem = document.getElementById('payment-icon')
+    const paymentStatus = paymentBadgeElem.textContent.trim() // trim to remove whitespace
+    
+    if (['Pending', 'Unpaid', 'Declined'].includes(paymentStatus)) {
+      paymentBadgeElem.className = 'badge bg-danger'
+      paymentIconElem.className = 'bi-exclamation-octagon'
+    } else {
+      paymentBadgeElem.className = 'badge bg-success'
+      paymentIconElem.className = 'bi-check-circle'
+    }
+  </script>
+{% endblock %}

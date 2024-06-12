@@ -1,0 +1,25 @@
+<div class="modal fade" id="addreq" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Requirement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url "core:requirements" %}" method="post">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Requirement</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="requirement" type="text" class="form-control" id="title" value="" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary" type="submit"><i class="bi bi-plus"></i>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Basic Modal -->

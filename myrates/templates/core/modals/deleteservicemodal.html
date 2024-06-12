@@ -1,0 +1,20 @@
+<div class="modal fade" id="delete-serv" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete {{ service.title }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="delete-warning">
+          <h3 class="warningtitle">Are you sure you want to remove this Service?</h3>
+          <p class="">This action is irreversable!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" data-bs-target="#delete-serv">No</button>
+        <a href="{% url 'core:delete_service' service.id %}" type="button" class="btn btn-danger">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>

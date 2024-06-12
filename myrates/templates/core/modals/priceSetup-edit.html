@@ -1,0 +1,57 @@
+<div class="modal fade" id="editPrice-{{ price.id }}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Price Modification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'core:pricing' %}" method="post">
+          {% csrf_token %}
+          <input name="formid" type="text" class="form-control" id="title" value="priceEdit" hidden />
+          <input name="priceid" type="text" class="form-control" id="title" value="{{price.id}}" hidden />
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Service</label>
+            <div class="col-md-8 col-lg-9">
+              <!-- <input name="Service" type="text" class="form-control" id="county" value="" /> -->
+              <select name="service" id="service" class="form-select form-control">
+                {% for service in services %}
+                  {% if service.id == price.service.id %}
+                    <option value="{{ service.id }}" selected>{{ service.title }}</option>
+                  {% else %}
+                    <option value="{{ service.id }}">{{ service.title }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Town</label>
+            <div class="col-md-8 col-lg-9">
+              <select name="town" id="" class="form-select form-control">
+                <option value="">Select Town</option>
+                {% for town in towns %}
+                  {% if town.id == price.town.id %}
+                    <option value="{{ town.id }}" selected>{{ town.town }}</option>
+                    {% else %}
+                    <option value="{{ town.id }}">{{ town.town }}</option>
+                    {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Amount</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="amount" type="number" class="form-control" id="amount" value="" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <button name="addTown" class="btn btn-primary" type="submit"><i class="bi bi-plus"></i>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Basic Modal -->

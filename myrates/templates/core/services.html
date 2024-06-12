@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+  Liparates - Our services
+{% endblock %}
+
+{% block pagetitle %}
+  Our Services<hr />
+  {% if user.is_staff %}
+    <a href="{% url 'core:add_services' %}" type="button" class="btn btn-primary btn-sm float-right"><i class="bi bi-plus"></i>Add New Service</a>
+  {% endif %}
+{% endblock %}
+
+{% block mainbody %}
+  <div class="row">
+    {% for service in services %}
+      <div class="col-sm-12 col-md-4 col-lg-4 animate__bounceIn">
+        <div class="card ">
+          <div class="card-header m-9" style="padding-bottom: 0px;padding-top: 5px;">
+            <h5 class="" style="text-align: center;font-weight: bold;">{{ service.title }}</h5>
+          </div>
+          <div class="card-body" style="text-align: center;">
+            <p>{{ service.description }}</p>
+          </div>
+          <div class="card-footer" style="text-align: center;">
+            <a href="{% url 'core:service_details' service.id %}" type="button" class="btn btn-primary btn-sm">Details</a>
+            {% if user.is_staff %}
+              | <a href="{% url 'core:edit_services' service.id %}" type="button" class="btn btn-primary btn-sm">Edit</a>
+              | <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#delete-serv">Delete</button>
+              {% include "core/modals/deleteservicemodal.html" %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

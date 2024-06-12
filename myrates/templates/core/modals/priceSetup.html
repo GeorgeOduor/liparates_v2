@@ -1,0 +1,50 @@
+<div class="modal fade" id="newPrice" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Price Setup</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url "core:pricing" %}" method="post">
+            {% csrf_token %}
+            <input name="formid" type="text" class="form-control" id="title" value="pricing" hidden />
+            <div class="row mb-3">
+              <label for="email" class="col-md-4 col-lg-3 col-form-label">Service</label>
+              <div class="col-md-8 col-lg-9">
+                <!--<input name="Service" type="text" class="form-control" id="county" value="" /> -->
+                <select name="service" id="service" class="form-select form-control">
+                  <option value="">Select Service</option>
+                  {% for service in services %}
+                    <option value="{{service.id}}">{{service.title}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="email" class="col-md-4 col-lg-3 col-form-label">Town</label>
+              <div class="col-md-8 col-lg-9">
+                <select name="town" id=" " class="form-select form-control">
+                  <option value="">Select Town</option>
+                  {% for town in towns %}
+                    <option value="{{town.id}}">{{town.town}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="email" class="col-md-4 col-lg-3 col-form-label">Amount</label>
+              <div class="col-md-8 col-lg-9">
+                <input name="amount" type="number" class="form-control" id="amount" value="" />
+              </div>
+            </div>
+            <div class="mb-3">
+              <button name="addTown" class="btn btn-primary" type="submit"><i class="bi bi-plus"></i>Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Basic Modal -->
+  

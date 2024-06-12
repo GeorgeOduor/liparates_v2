@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Liparates
+{% endblock %}
+
+{% block pagetitle %}
+  Price updates<hr />
+{% endblock %}
+
+{% block mainbody %}
+  <style>
+    .list-group-item::marker {
+      color: #007bff;
+      content: '✓';
+    }
+  </style>
+  <div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 text-center m-2">
+      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addTown"><i class="bi bi-plus"></i>Add New Town</button>
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4 text-center m-2">
+      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newPrice"><i class="bi bi-plus"></i>Set New Price</button>
+    </div>
+    <hr class="mt-3 mb-3" />
+  </div>
+  <div class="row">
+    <table class="table datatable">
+      <thead style="text-align: center;">
+        <tr class="animate__bounceIn">
+          <th>Services</th>
+          <th>Town/Municipality</th>
+          <th>Amount</th>
+          <th>
+            <i class="bi bi-pen-fill"></i>
+          </th>
+          <th>
+            <i class="bi bi-trash-fill"></i>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for price in prices %}
+          <tr>
+            <td>{{ price.service }}</td>
+            <td>{{ price.town.town }}</td>
+            <td>{{ price.amount }}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editPrice-{{ price.id }}"><i class="bi bi-pen-fill"></i> Edit</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePrice-{{ price.id }}"><i class="bi bi-trash-fill"></i> Delete</button>
+            </td>
+          </tr>
+          {% include 'core/modals/priceSetup-edit.html' %}
+          {% include 'core/modals/priceSetup-delete.html' %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include 'core/modals/newTown.html' %}
+  {% include 'core/modals/priceSetup.html' %}
+{% endblock %}

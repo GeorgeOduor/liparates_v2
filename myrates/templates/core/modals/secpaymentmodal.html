@@ -1,0 +1,46 @@
+<div class="modal fade" id="pay" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Payment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Payment Confirmation</h4>
+        <p class="instructions">Please go to your M-Pesa account and complete the transaction using the details below:</p>
+        <p class="instructions">If you have already paid before,enter the transaction code:</p>
+        <p class="instructions">
+          <b>PAY BILL Number</b>: <span class="paybill">{{companyDetails.paybill}}</span>
+        </p>
+        <p class="instructions">
+          <b>Account Number</b>: <span class="account"> {{companyDetails.accountno }}</span>
+        </p>
+        <form action="{% url "core:service_details" application.id %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="formid" value="paymentupdate" hidden>
+          <input type="hidden" name="applicationid" value="{{application.id}}" hidden>
+          <div class="row mb-3">
+            <label for="formFile" class="col-sm-5 col-form-label">Amount to pay:</label>
+            <div class="col-sm-7">
+              <input class="form-control" name="amount" type="text" id="amount" required value="{{application.amount}}" readonly/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="formFile" class="col-sm-5 col-form-label">Transaction Code</label>
+            <div class="col-sm-7">
+              <input class="form-control" name="transactioncode" type="text" id="trxCode" required  />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-wallet"></i> Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" data-bs-target="#delete-serv">No</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load custom_filters %}
+
+{% load static %}
+
+{% block title %}
+  Liparates - {{ service.title }}
+{% endblock %}
+
+{% block pagetitle %}
+  {{ service.title }}
+  <hr />
+{% endblock %}
+
+{% block mainbody %}
+  <style>
+    .list-group-item::marker {
+      color: #007bff;
+      content: '✓';
+    }
+  </style>
+  <div class="row">
+    <h4>Description</h4>
+    <p>{{ service.description }}</p>
+    <fieldset>
+      <legend>Requirements</legend>
+      <p>In order to apply for this service, you must have:</p>
+      <ul>
+        {% for requirement in service.requirements|split:',' %}
+          <li class="list-group-item">{{ requirement }}</li>
+        {% endfor %}
+      </ul>
+    </fieldset>
+  </div>
+  <p style="color: red;font-style: italic;font-size: smaller;">Note: Price varies depending on the geographical location</p>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apply">
+    <i class="bi bi-plus"></i>
+    Apply
+  </button>
+  {% include "core/modals/applymodal.html" %}
+{% endblock %}

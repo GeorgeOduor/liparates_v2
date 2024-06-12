@@ -1,0 +1,54 @@
+<form action="" method="post" >
+  {% csrf_token %}
+  <div class="row mb-3">
+    <label for="firstName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="firstName" type="text" class="form-control" id="firstName" value= "{{user.first_name}}"/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="lastName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="lastName" type="text" class="form-control" id="lastName" value= "{{user.last_name}}" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="email" type="email" class="form-control" id="email" value= "{{user.email}} "/>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="phone" type="text" class="form-control" id="phone" value= "{{user.profile.phone}}" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="county" class="col-md-4 col-lg-3 col-form-label">County</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="county" type="text" class="form-control" id="county" value= "{{user.profile.county}}" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="town" class="col-md-4 col-lg-3 col-form-label">Town</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="town" type="text" class="form-control" id="town" value= "{{user.profile.town}}" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="municipality" class="col-md-4 col-lg-3 col-form-label">Municipality</label>
+    <div class="col-md-8 col-lg-9">
+      <input name="municipality" type="text" class="form-control" id="municipality" value= "{{user.profile.municipality}}" />
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </div>
+</form>

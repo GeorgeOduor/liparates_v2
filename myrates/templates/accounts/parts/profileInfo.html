@@ -1,0 +1,33 @@
+
+<h5 class="card-title">Profile Details</h5>
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">Full Name</div>
+  <div class="col-lg-9 col-md-8">{{ user.get_full_name }}</div>
+</div>
+<!-- user Address info -->
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">Email address</div>
+  <div class="col-lg-9 col-md-8">{{ user.email }}</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">Phone</div>
+  <div class="col-lg-9 col-md-8">{{ user.profile.phone }}</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">County</div>
+  <div class="col-lg-9 col-md-8">{{ user.profile.county }}</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">Town</div>
+  <div class="col-lg-9 col-md-8">{{ user.profile.town }}</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-4 label">Municipality</div>
+  <div class="col-lg-9 col-md-8">{{ user.profile.municipality }}</div>
+</div>

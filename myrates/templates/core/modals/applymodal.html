@@ -1,0 +1,115 @@
+{% load custom_filters %}
+<div class="modal fade" id="apply" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ service.title }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" id="registration" enctype="multipart/form-data" >
+          {% csrf_token %}
+          <input type="text" name="formid" value="apply" hidden>
+          <nav>
+            <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Requirements</a>
+              <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Payment</a>
+              <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Payment Confirmation</a>
+            </div>
+          </nav>
+          <div class="tab-content py-4">
+            <div class="tab-pane fade show active" id="step1">
+              <h4>Upload your documents here</h4>
+              {% for req in service.requirements|split:','   %}
+              <div class="row mb-3">
+                <label for="formFile" class="col-sm-3 col-form-label">{{req}}</label>
+                <div class="col-sm-9">
+                  <input class="form-control" name="{{req}}" type="file" id="formFile" required/>
+                </div>
+              </div>
+              {% endfor %}
+              
+            </div>
+            <div class="tab-pane fade" id="step2">
+              <h4>Payment information</h4>
+              <div class="row mb-3">
+                <label for="formFile" class="col-sm-3 col-form-label">Town</label>
+                <div class="col-sm-9">
+                  {% comment %} <input class="form-control" name="town" type="text" id="formFile" /> {% endcomment %}
+                  <select name="town" id="town" class="form-select form-control">
+                    <option value="">Select Town</option>
+                    {% for town in towns %}
+                      <option value="{{town.id}}" >{{town.town}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="formFile" class="col-sm-3 col-form-label">Price to pay (Ksh)</label>
+                <div class="col-sm-9">
+                  <input class="form-control" name="amount" type="number" id="price" readonly  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="formFile" class="col-sm-6 col-form-label">Mobile number to pay from</label>
+                <div class="col-sm-6">
+                  <input class="form-control" name="payer" type="text" id="price"   />
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade text-center" id="step3">
+              <h4>Payment Confirmation</h4>
+              <p class="instructions">
+                Please go to your M-Pesa account and complete the transaction using the details below:
+              </p>
+              <p class="instructions">
+                <b>PAY BILL Number</b>: <span class="paybill"> {{companyinfo.paybill}}</span>
+              </p>
+              <p class="instructions">
+                <b>Account Number</b>: <span class="account"> {{companyinfo.accountno }}</span>
+              </p>
+              <div class="row mb-3">
+                <label for="formFile" class="col-sm-5 col-form-label">Transaction Code</label>
+                <div class="col-sm-7">
+                  <input class="form-control" name="transactioncode" type="text" id="trxCode"   required  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" data-enchanter="finish">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const townSelect = document.getElementById('town');
+    const priceInput = document.getElementById('price');
+    const serviceId = '{{ service.id }}'; // Replace this with the actual service ID
+
+    townSelect.addEventListener('change', function () {
+      const selectedTownId = townSelect.value;
+      if (selectedTownId) {
+        fetch(`/core/service_price/${serviceId}/${selectedTownId}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.price) {
+              priceInput.value = data.price;
+            } else {
+              priceInput.value = '';
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching price:', error);
+            console.log('Service ID:', serviceId);
+            console.log('Town ID:', selectedTownId);
+            priceInput.value = '';
+          });
+      } else {
+        priceInput.value = '';
+      }
+    });
+  });
+</script>

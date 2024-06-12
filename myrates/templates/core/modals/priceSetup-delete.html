@@ -1,0 +1,27 @@
+<div class="modal fade" id="deletePrice-{{ price.id }}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete {{ price.service }} at {{ price.town.town}} town for sh{{ price.amount }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="delete-warning text-center">
+          <h1><i class="bi bi-exclamation-triangle-fill"></i></h1>
+          <h3 class="warningtitle">Are you sure you want to remove this price information?</h3>
+          <p class="">This action is irreversable!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" data-bs-target="#delete-serv">No</button>
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="formid" value="priceDelete">
+          <input type="hidden" name="priceid" value="{{ price.id }}">
+          <button type="submit" class="btn btn-danger">Yes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="modal fade" id="addTown" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Town </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url "core:pricing" %}" method="post">
+          {% csrf_token %}
+          <input name="formid" type="text" class="form-control" id="title" value="towns" hidden />
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">County</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="county" type="text" class="form-control" id="county" value="" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Town</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="town" type="text" class="form-control" id="town" value="" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="col-md-4 col-lg-3 col-form-label">Municipality</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="municipality" type="text" class="form-control" id="town" value="" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <button name="addTown" class="btn btn-primary" type="submit"><i class="bi bi-plus"></i>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Basic Modal -->
