@@ -1,9 +1,9 @@
 {% load static %}
 <header id="header" class="fixed-top">
   <div class="container d-flex align-items-center justify-content-between">
-    <h1 class="logo"><a href="index.html">Liparates</a></h1>
+    {% comment %} <h1 class="logo"><a href="index.html">Liparates</a></h1> {% endcomment %}
     <!-- Uncomment below if you prefer to use an image logo -->
-     <a href="index.html" class="logo"><img src="{% static '/landing/assets/img/logo.png' %}" alt="" class="img-fluid"></a> 
+    <a href="{% url 'landing:home' %}" class="logo"><img src="{% static '/landing/assets/img/logo.png' %}" alt="" class="img-fluid" /></a>
     <nav id="navbar" class="navbar">
       <ul>
         <li>

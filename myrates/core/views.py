@@ -128,7 +128,7 @@ class ServiceDetails(LoginRequiredMixin,View):
                 messages.success(request, "Payment details updated successfully!")
                 return redirect("core:details", aplid=application.id)
         except Exception as e:
-            messages.error(f"An error occured!{e}")
+            messages.error(self.request,f"An error occured!{e}")
             return redirect("core:services")
 
 

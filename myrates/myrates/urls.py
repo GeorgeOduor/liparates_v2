@@ -25,8 +25,8 @@ urlpatterns = [
     path("", include("landing.urls")),
     path("accounts/", include("accounts.urls",namespace="accounts")),
     path("core/", include("core.urls", namespace="core")),
-] + \
-static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) + \
-static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+]# + \
+#static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #+ \
+# static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 
 
