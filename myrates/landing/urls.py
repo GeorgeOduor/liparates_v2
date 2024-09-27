@@ -6,4 +6,5 @@ app_name = "landing"
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
+    path("toc", views.toc, name="toc")
 ]

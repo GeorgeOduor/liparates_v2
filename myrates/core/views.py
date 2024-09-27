@@ -23,8 +23,8 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 
-class Dashboard( LoginRequiredMixin, View):
-    
+class Dashboard(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -39,9 +39,10 @@ class Dashboard( LoginRequiredMixin, View):
         return render(request, "core/dashboard.html", context)
 
 
-class Requirements(LoginRequiredMixin,View):
+class Requirements(LoginRequiredMixin, View):
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
+
     def post(self, request):
         requirements = request.POST
         requirement = requirements["requirement"]
@@ -50,18 +51,20 @@ class Requirements(LoginRequiredMixin,View):
         return redirect("core:add_services")
 
 
-class OurServices(LoginRequiredMixin,View):
+class OurServices(LoginRequiredMixin, View):
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
+
     def get(self, request):
         services = Services.objects.all()
         context = {"services": services}
         return render(request, "core/services.html", context)
 
 
-class ServiceAdd(LoginRequiredMixin,View):
+class ServiceAdd(LoginRequiredMixin, View):
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
+
     def get(self, request):
         requirements = ServiceRequirements.objects.all()
         context = {"requirements": requirements}
@@ -84,9 +87,10 @@ class ServiceAdd(LoginRequiredMixin,View):
             return render(request, "core/pages/new_service.html")
 
 
-class ServiceDetails(LoginRequiredMixin,View):
+class ServiceDetails(LoginRequiredMixin, View):
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
+
     def get(self, request, servid):
         service = Services.objects.get(id=servid)
         towns = Towns.objects.all()
@@ -128,13 +132,14 @@ class ServiceDetails(LoginRequiredMixin,View):
                 messages.success(request, "Payment details updated successfully!")
                 return redirect("core:details", aplid=application.id)
         except Exception as e:
-            messages.error(self.request,f"An error occured!{e}")
+            messages.error(self.request, f"An error occured!{e}")
             return redirect("core:services")
 
 
-class ServiceEdit(LoginRequiredMixin,View):
+class ServiceEdit(LoginRequiredMixin, View):
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
+
     def get(self, request, servid):
         service = Services.objects.get(id=servid)
         context = {"service": service}
@@ -156,8 +161,8 @@ class ServiceEdit(LoginRequiredMixin,View):
             return redirect("core:services")
 
 
-class ServiceDelete(LoginRequiredMixin,View):
-    
+class ServiceDelete(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -172,8 +177,8 @@ class ServiceDelete(LoginRequiredMixin,View):
             return redirect("core:services")
 
 
-class ServicePrice(LoginRequiredMixin,View):
-    
+class ServicePrice(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -190,8 +195,8 @@ class ServicePrice(LoginRequiredMixin,View):
             return JsonResponse(context)
 
 
-class ApplicationsListing(LoginRequiredMixin,View):
-    
+class ApplicationsListing(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -203,18 +208,15 @@ class ApplicationsListing(LoginRequiredMixin,View):
             new = applications.filter(paymentStatus="Pending", resolution="New")
             onque = applications.filter(paymentStatus="Paid", resolution="Queued")
             closed = applications.filter(paymentStatus="Paid", resolution="Closed")
-            context = {
-                "new": new, "onque": onque, 
-                "closed": closed
-                }
+            context = {"new": new, "onque": onque, "closed": closed}
             return render(request, "core/myapplications.html", context)
         except Exception as e:
             messages.error(request, f"Error occured!,{e}")
             return HttpResponse(f"Something went wrong! ,{e}")
 
 
-class ApplicationDetails(LoginRequiredMixin,View):
-    
+class ApplicationDetails(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -250,8 +252,8 @@ class ApplicationDetails(LoginRequiredMixin,View):
             return redirect("core:details", aplid=aplid)
 
 
-class ApplicationsReceived(LoginRequiredMixin,View):
-    
+class ApplicationsReceived(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -259,11 +261,11 @@ class ApplicationsReceived(LoginRequiredMixin,View):
         return render(request, "core/applicationsreceived.html")
 
 
-class Pricing(LoginRequiredMixin,View):
-    
+class Pricing(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
-    
+
     def get(self, request):
         services = Services.objects.all()
         towns = Towns.objects.all()
@@ -306,8 +308,8 @@ class Pricing(LoginRequiredMixin,View):
             return redirect("core:pricing")
 
 
-class CompanyDetails(LoginRequiredMixin,View):
-    
+class CompanyDetails(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
@@ -343,17 +345,19 @@ class CompanyDetails(LoginRequiredMixin,View):
             messages.success(request, "Company details updated successfully")
 
         return redirect("core:companyProfile")
-    
-class PaymentUpdates(LoginRequiredMixin,View):
-    
+
+
+class PaymentUpdates(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 
     def get(self, request):
         return render(request, "core/pages/payment_updates.html")
-    
-class Notifications(LoginRequiredMixin,View):
-    
+
+
+class Notifications(LoginRequiredMixin, View):
+
     login_url = "accounts:login"
     redirect_field_name = "redirect_to"
 

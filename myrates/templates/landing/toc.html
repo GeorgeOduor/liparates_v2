@@ -1,0 +1,254 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+  <style>
+    /* General styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    header {
+      background-color: #0275d8;
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+    
+    h1,
+    h2 {
+      color: #0275d8;
+    }
+    
+    /* Section styles */
+    section {
+      padding: 20px;
+      margin: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    
+    ul li {
+      margin-bottom: 8px;
+    }
+    
+    p {
+      line-height: 1.6;
+    }
+    
+    /* Footer styles */
+
+    /* Button styles for the aim and contact sections */
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #0275d8;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      section {
+        margin: 10px;
+        padding: 15px;
+      }
+    
+      h1 {
+        font-size: 12px;
+      }
+    
+      h2 {
+        font-size: 12px;
+      }
+    
+      p {
+        font-size: 12px;
+      }
+    
+      ul li {
+        font-size: 12px;
+      }
+    }
+  </style>
+  <section id="toc" class="features d-flex align-items-center" style="clear: both;">
+    <div class="container mt-5" data-aos="fade-up">
+      <div class="section-title">
+        <h2 class="mt-5" style="clear: both;">Our Terms & Conditions</h2>
+      </div>
+      <div class="row">
+        <section id="terms">
+          <h2>1. Use of Liparates.com Platform</h2>
+          <ul>
+            <li>
+              <strong>Eligibility:</strong> You must be at least 18 years old and capable of entering into a legally binding agreement to use our services.
+            </li>
+            <li>
+              <strong>Account Registration:</strong> To use our services, you must register an account and provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials.
+            </li>
+            <li>
+              <strong>Service Description:</strong> Liparates.com provides a service to generate invoices for paying land rates. We do not collect land rates on behalf of any government or authority.
+            </li>
+            <li>
+              <strong>Prohibited Activities:</strong> You agree not to:<ul>
+                <li>Use the platform for any illegal purposes.</li>
+                <li>Interfere with or disrupt the platform's operation.</li>
+                <li>Access the platform through unauthorized means.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h2>2. Charges for Services</h2>
+          <ul>
+            <li>
+              <strong>Service Fees:</strong> Liparates.com charges a fee for generating land rate invoices. The fee amount is specified on our website and may be updated from time to time.
+            </li>
+            <li>
+              <strong>Additional Charges:</strong> Any additional charges incurred during the use of our services will be your responsibility.
+            </li>
+          </ul>
+
+          <h2>3. Payment for Charges</h2>
+          <ul>
+            <li>
+              <strong>Payment Methods:</strong> Payments for services can be made through the payment methods specified on our website.
+            </li>
+            <li>
+              <strong>Payment Timing:</strong> Payment is due at the time the service is rendered. No invoice will be generated without prior payment.
+            </li>
+            <li>
+              <strong>Payment Issues:</strong> If your payment is declined or reversed, you remain responsible for any unpaid fees.
+            </li>
+          </ul>
+
+          <h2>4. Data Protection and Use</h2>
+          <ul>
+            <li>
+              <strong>Data Collection:</strong> We collect personal information necessary to provide our services. This includes your name, contact details, and property information.
+            </li>
+            <li>
+              <strong>Data Use:</strong> Your data is used solely for providing and improving our services. We do not sell or share your data with third parties except as required by law.
+            </li>
+            <li>
+              <strong>Data Security:</strong> We implement appropriate technical and organizational measures to protect your data against unauthorized access, alteration, or destruction.
+            </li>
+            <li>
+              <strong>Data Retention:</strong> We retain your data only as long as necessary to provide our services or as required by law.
+            </li>
+          </ul>
+
+          <h2>5. Refund Policy</h2>
+          <ul>
+            <li>
+              <strong>Refund Eligibility:</strong> Refunds are provided only in cases where services were not rendered as described or due to a technical error on our part.
+            </li>
+            <li>
+              <strong>Refund Process:</strong> To request a refund, contact our customer support with details of your transaction. Refund requests are processed within 30 days of receipt.
+            </li>
+          </ul>
+
+          <h2>6. License to Use the Service</h2>
+          <ul>
+            <li>
+              <strong>Grant of License:</strong> We grant you a limited, non-exclusive, non-transferable license to access and use the Liparates.com platform for its intended purpose.
+            </li>
+            <li>
+              <strong>Restrictions:</strong> You may not:<ul>
+                <li>Copy, modify, or create derivative works based on the platform.</li>
+                <li>Reverse engineer or attempt to extract the source code.</li>
+                <li>Use the platform for any purpose other than its intended use.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h2>7. Cybersecurity</h2>
+          <ul>
+            <li>
+              <strong>Security Measures:</strong> We employ industry-standard security measures to protect our platform and your data.
+            </li>
+            <li>
+              <strong>User Responsibilities:</strong> You are responsible for safeguarding your account information and for any activities conducted under your account.
+            </li>
+            <li>
+              <strong>Breach Notification:</strong> In the event of a data breach, we will notify affected users as required by law and take steps to mitigate the impact.
+            </li>
+            <li>
+              <strong>Reporting:</strong> If you become aware of any security issues or breaches, you must report them to us immediately.
+            </li>
+          </ul>
+
+          <h2>8. Changes to Terms and Conditions</h2>
+          <ul>
+            <li>
+              <strong>Amendments:</strong> We may update these terms and conditions from time to time. The updated terms will be posted on our website with the effective date.
+            </li>
+            <li>
+              <strong>Continued Use:</strong> Your continued use of our services after any changes indicates your acceptance of the new terms.
+            </li>
+          </ul>
+
+          <h2>9. Governing Law</h2>
+          <p>These terms and conditions are governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law principles.</p>
+
+          <h2>10. Contact Information</h2>
+          <p>For any questions or concerns about these terms and conditions, please contact us at:</p>
+          <p>
+            Liparates.com<br />[Phone Number]
+          </p>
+        </section>
+
+        <section id="about">
+          <h1>About Us</h1>
+          <p>Liparates.com is an innovative online platform dedicated to assisting landowners across all counties in Kenya. We streamline the process of obtaining invoices from respective county offices for the payment of land rates and facilitate comprehensive land search services. Our goal is to make land management easier, more transparent, and accessible for everyone.</p>
+
+          <h2>Our Values</h2>
+          <ul>
+            <li>
+              <strong>Integrity:</strong> Upholding the highest standards of honesty and transparency in all our services.
+            </li>
+            <li>
+              <strong>Efficiency:</strong> Delivering prompt and accurate services to save our clients time and effort.
+            </li>
+            <li>
+              <strong>Customer-Centricity:</strong> Prioritizing the needs and satisfaction of our customers in every interaction.
+            </li>
+            <li>
+              <strong>Innovation:</strong> Continuously improving our technology and processes to offer the best solutions.
+            </li>
+            <li>
+              <strong>Reliability:</strong> Ensuring consistent and dependable services that our clients can trust.
+            </li>
+          </ul>
+
+          <h2>Our Vision</h2>
+          <p>To be the leading platform in Kenya for land management services, transforming the way landowners interact with county offices and access vital information.</p>
+
+          <h2>Our Mission</h2>
+          <p>To empower landowners in Kenya by providing easy access to essential land-related services, ensuring convenience, accuracy, and efficiency in managing land rates and searches.</p>
+        </section>
+
+        <section id="tagline">
+          <h2>Tagline</h2>
+          <p>"Efficient and Effortless."</p>
+        </section>
+
+        <section id="aim">
+          <h2>Our Aim</h2>
+          <p>Our aim is to revolutionize land management in Kenya by offering a user-friendly platform that simplifies the process of obtaining land rates invoices and conducting land searches, thereby fostering transparency, efficiency, and ease of access for all landowners.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+{% endblock %}

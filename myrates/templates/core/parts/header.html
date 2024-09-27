@@ -2,8 +2,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <a href="{% url 'core:performance' %}" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="" />
-      <span class="d-none d-lg-block">Liparates</span>
+      <img src="{% static 'landing/assets/img/logo.png' %}" alt="" />
+      {% comment %} <span class="d-none d-lg-block">Liparates</span> {% endcomment %}
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div>
@@ -16,23 +16,23 @@
     <ul class="d-flex align-items-center">
       <!-- End Search Icon -->
 
-      <li class="nav-item dropdown">
+      {% comment %} <li class="nav-item dropdown">
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
           <i class="bi bi-bell"></i>
           <span class="badge bg-primary badge-number"></span>
         </a><!-- End Notification Icon -->
 
         <!-- End Notification Dropdown Items -->
-      </li>
+      </li> {% endcomment %}
       <!-- End Notification Nav -->
 
-      <li class="nav-item dropdown">
+      {% comment %} <li class="nav-item dropdown">
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
           <i class="bi bi-chat-left-text"></i>
           <span class="badge bg-success badge-number"></span>
         </a><!-- End Messages Icon -->
         <!-- End Messages Dropdown Items -->
-      </li>
+      </li> {% endcomment %}
       <!-- End Messages Nav -->
 
       <li class="nav-item dropdown pe-3">

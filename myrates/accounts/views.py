@@ -22,6 +22,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class LoginView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect("core:services")
         return render(request, 'accounts/login.html')
     
     def post(self,request):
@@ -44,6 +46,8 @@ class LoginView(View):
     
 class RegisterView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect("core:services")
         return render(request, 'accounts/register.html')
     
     def post(self, request):
