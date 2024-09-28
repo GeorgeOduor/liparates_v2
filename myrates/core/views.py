@@ -247,6 +247,7 @@ class ApplicationDetails(LoginRequiredMixin, View):
             messages.success(request, "Application progress updated successfully!")
             if application.resolution == "Closed":
                 # send email to user
+                
                 messages.success(request, "Application closed successfully!")
             return redirect("core:myapplications")
         else:
