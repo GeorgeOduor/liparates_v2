@@ -184,7 +184,6 @@ class ServicePrice(LoginRequiredMixin, View):
 
     def get(self, request, servid, townid):
         try:
-
             service = Services.objects.get(id=servid)
             town = Towns.objects.get(id=townid)
             price = get_object_or_404(Prices, service=service, town=town)
@@ -246,6 +245,9 @@ class ApplicationDetails(LoginRequiredMixin, View):
                 application.invoice = fileName
             application.save()
             messages.success(request, "Application progress updated successfully!")
+            if application.resolution == "Closed":
+                # send email to user
+                messages.success(request, "Application closed successfully!")
             return redirect("core:myapplications")
         else:
             messages.error(request, "Something went wrong!")
