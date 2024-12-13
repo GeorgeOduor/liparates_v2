@@ -131,12 +131,7 @@ class ServiceDetails(LoginRequiredMixin, View):
             messages.error(self.request, f"An error occured!{e}")
             return redirect("core:services")
 
-class ApplicationUI(LoginRequiredMixin, View):
-    login_url = "accounts:login"
-    redirect_field_name = "redirect_to"
-
-    def get(self, request):
-        return render(request, "core/modals/applymodal.html")
+class 
 
 class ServiceEdit(LoginRequiredMixin, View):
     login_url = "accounts:login"

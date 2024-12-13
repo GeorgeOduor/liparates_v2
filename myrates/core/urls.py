@@ -21,5 +21,6 @@ urlpatterns = [
     # pricing
     path("pricing/",views.Pricing.as_view(),name="pricing"),
     path("payments/",views.PaymentUpdates.as_view(),name="payments"),
+    path("application_ui/",views.ApplicationUI.as_view(),name = "application")
 ] 
 

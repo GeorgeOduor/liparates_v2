@@ -1,12 +1,45 @@
+{% extends 'core/base.html' %}
 {% load custom_filters %}
-<div class="modal fade" id="apply" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ service.title }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+
+{% load static %}
+
+{% block title %}
+Liparates - {{ service.title }}
+{% endblock %}
+
+{% block pagetitle %}
+{{ service.title }}
+<hr/>
+{% endblock %}
+
+{% block mainbody %}
+<style>
+    .list-group-item::marker {
+      color: #007bff;
+      content: '✓';
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <h4>Description</h4>
+        <p>{{ service.description }}</p>
+        <fieldset>
+            <legend>Requirements</legend>
+            <p>In order to apply for this service, you must have:</p>
+            <ul>
+                {% for requirement in service.requirements|split:',' %}
+                <li class="list-group-item">{{ requirement }}</li>
+                {% endfor %}
+            </ul>
+        </fieldset>
+        <p style="color: red;font-style: italic;font-size: smaller;">Note: Price varies depending on the geographical
+            location</p>
+        <button class="btn btn-primary" onclick="loadUI()">
+            <i class="bi bi-plus"></i>
+            Apply
+        </button>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
         <form action="" method="post" id="registration" enctype="multipart/form-data" >
           {% csrf_token %}
           <input type="text" name="formid" value="apply" hidden>
@@ -78,38 +111,19 @@
             </div>
           </div>
         </form>
-      </div>
     </div>
-  </div>
+
 </div>
 
+{% include "core/modals/applymodal.html" %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const townSelect = document.getElementById('town');
-    const priceInput = document.getElementById('price');
-    const serviceId = '{{ service.id }}'; // Replace this with the actual service ID
-
-    townSelect.addEventListener('change', function () {
-      const selectedTownId = townSelect.value;
-      if (selectedTownId) {
-        fetch(`/core/service_price/${serviceId}/${selectedTownId}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.price) {
-              priceInput.value = data.price;
-            } else {
-              priceInput.value = '';
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching price:', error);
-            console.log('Service ID:', serviceId);
-            console.log('Town ID:', selectedTownId);
-            priceInput.value = '';
-          });
-      } else {
-        priceInput.value = '';
-      }
-    });
-  });
-</script>
+        // JavaScript to handle the button click
+        function loadUI() {
+            fetch('/core/application_ui')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('apply_serv').innerHTML = html;
+                });
+        }
+    </script>
+{% endblock %}
