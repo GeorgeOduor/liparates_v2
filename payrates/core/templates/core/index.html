@@ -1,0 +1,19 @@
+{% extends 'core/_base.html' %}
+
+{% block content %}
+  <div class="relative bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
+    <div class="flex items-start">
+      {% include 'core/partials/navbar.html' %}
+
+      <section class="main-content w-full px-2">
+        {% include 'core/partials/header.html' %}
+
+        <div class="my-10 px-2">
+          {% block bodyContent %}
+
+          {% endblock %}
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}

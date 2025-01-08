@@ -1,0 +1,54 @@
+{% extends 'users/index.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col justify-center font-[sans-serif] p-4">
+    <div class="max-w-md w-full mx-auto shadow-xl2 shadow-lg shadow-blue-500/50  p-8 relative mt-12">
+      <div class="bg-white w-24 h-24 border-[10px] p-1.5 absolute left-0 right-0 mx-auto -top-12 rounded-full overflow-hidden">
+        <a href="javascript:void(0)"><img
+          src="{% static 'images/logo1.png' %}" alt="logo" class='w-full inline-block' />
+        </a>
+      </div>
+
+      <form class="mt-4" method="POST" action="{% url 'users:register' %}">
+        {% csrf_token %}
+        {% comment %} <h5 class="text-xl font-bold text-blue-500 mb-2 text-center">Welcome!</h5> {% endcomment %}
+        <h3 class="text-xl font-bold text-blue-500 mb-4 text-center">Create a free account</h3>
+        <p class="text-sm mb-4 text-center text-gray-800">
+          Enter your personal details to create an account
+        </p>
+        <div class="space-y-4">
+          {{ form.first_name }}
+          {{ form.last_name }}       
+          {{ form.email }}
+          {{ form.password }}
+          {{ form.confirm_password }}
+            <div class="flex items-center">
+            <input id="terms_accept" name="remember-me" type="checkbox" onchange="toggleButtonState()" class="h-4 w-4 shrink-0 border-gray-300 rounded" />
+            <label for="remember-me" class="ml-3 block text-sm text-blue-500">
+              I accept the <a href="javascript:void(0);" class="text-orange-500 font-semibold hover:underline ml-1">Terms and Conditions</a>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button id="submit_button"  type="submit" class="w-full py-4 px-8 text-sm tracking-wide font-semibold text-white bg-blue-500 hover:bg-blue-600 focus:outline-none disabled:opacity-50 disabled:blur-sm disabled:cursor-not-allowed" disabled>
+            Create an account
+          </button>
+        </div>
+        <p class="text-sm mt-4 text-center text-gray-800">Already have an account? <a href="{% url "users:login" %}" class="text-blue-500 font-semibold hover:underline ml-1">Login here</a></p>
+      </form>
+    </div>
+  </div>
+  <script>
+    function toggleButtonState() {
+      const checkbox = document.getElementById('terms_accept');
+      const button = document.getElementById('submit_button');
+      button.disabled = !checkbox.checked;
+      button.classList.toggle('blur-sm', !checkbox.checked);
+      button.classList.toggle('opacity-50', !checkbox.checked);
+    }
+  </script>
+{% endblock %}
+

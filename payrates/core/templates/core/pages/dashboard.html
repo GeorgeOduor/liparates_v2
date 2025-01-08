@@ -1,0 +1,57 @@
+{% extends 'core/index.html' %}
+
+{% block bodyContent %}
+   {% comment %} <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+        
+    <div> 
+        <!--    grind ends here -->
+    <div class="grid ">
+        <div class="stat place-items-center">
+            <div id="map" style="height: 300px;"></div>
+        </div>
+    </div> {% endcomment %}
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6 mb-4">
+        <div class="stats shadow">
+            <div class="stat place-items-center">
+                <div class="stat-title">Properties registered</div>
+                <div class="stat-value">31K</div>
+            </div>
+        </div>
+        <div class="stats shadow">
+            <div class="stat place-items-center">
+                <div class="stat-title">New Applications</div>
+                <div class="stat-value text-secondary">4,200</div>
+            </div>
+        </div>
+        <div class="stats shadow">
+            <div class="stat place-items-center">
+                <div class="stat-title">Pending Applications</div>
+                <div class="stat-value">1,200</div>
+            </div>
+        </div>
+        <div class="stats shadow">
+            <div class="stat place-items-center">
+                <div class="stat-title">Approved Applications</div>
+                <div class="stat-value">1,200</div>
+            </div>
+        </div>
+    </div>
+    <div class="grid ">
+        <div id="map" style="height: 350px;border-radius:15px;"></div>
+    </div>
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        var marker = L.marker([51.5, -0.09]).addTo(map);
+        var circle = L.circle([51.508, -0.11], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+    </script>
+
+{% endblock %}

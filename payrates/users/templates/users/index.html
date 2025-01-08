@@ -1,0 +1,82 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Django Tailwind</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% tailwind_css %}
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  </head>
+  <script>
+    particlesJS.load('particles-js', '/static/particles.json', function () {
+      console.log('Particles.js config loaded!')
+    })
+  </script>
+  <style>
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Behind the form */
+    }
+    
+    form {
+      z-index: 10; /* Ensure the form is on top */
+      position: relative;
+    }
+    /* ---- reset ---- */
+    
+    /* ---- particles.js container ---- */
+    
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #462b79;
+      background-image: url('{% static 'images/landing.jpg' %}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+    
+    .max-w-md.w-full.mx-auto.shadow-xl2.shadow-lg.shadow-blue-500\/50.p-8.relative.mt-12 {
+      background-color: #ffffffc4;
+      border-radius: 10px;
+    }
+  </style>
+
+  <body class="bg-gray-50 font-serif leading-normal tracking-normal">
+    {% comment %} <div id="particles-js" class="absolute inset-0 z-0"></div> {% endcomment %}
+    <div id="particles-js"></div>
+
+    {% if messages %}
+      <div class="fixed top-0 right-0 m-4 space-y-2">
+        {% for message in messages %}
+          <div class="
+					px-4 py-3 rounded-lg shadow-md 
+					{% if message.tags == 'success' %}bg-green-100 text-green-700{% endif %}
+					{% if message.tags == 'error' %}bg-red-100 text-red-700{% endif %}
+					{% if message.tags == 'info' %}bg-blue-100 text-blue-700{% endif %}
+					{% if message.tags == 'warning' %}bg-yellow-100 text-yellow-700{% endif %}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="container mx-auto">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <script>
+      setTimeout(() => {
+        const messages = document.querySelectorAll('.message')
+        messages.forEach((message) => {
+          message.remove()
+        })
+      }, 5000) // Adjust the timeout duration as needed
+    </script>
+  </body>
+</html>

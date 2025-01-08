@@ -1,0 +1,117 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Liparates</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% tailwind_css %}
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // sidebar
+        document.querySelectorAll('#sidebar ul > li > .menu-item').forEach((item) => {
+          item.addEventListener('click', () => {
+            // Remove classes from all menu items
+            document.querySelectorAll('#sidebar ul > li > .menu-item').forEach((otherItem) => {
+              otherItem.classList.remove('bg-[#d9f3ea]', 'text-green-700')
+              otherItem.classList.add('text-gray-800')
+            })
+      
+            // Add classes to the clicked item
+            item.classList.add('bg-[#d9f3ea]', 'text-green-700')
+            item.classList.remove('text-gray-800')
+          })
+        })
+      
+        let sidebarToggleBtn = document.getElementById('toggle-sidebar')
+        let sidebarCollapseMenu = document.getElementById('sidebar-collapse-menu')
+      
+        sidebarToggleBtn.addEventListener('click', () => {
+          if (!sidebarCollapseMenu.classList.contains('open')) {
+            sidebarCollapseMenu.classList.add('open')
+            sidebarCollapseMenu.style.cssText = 'width: 250px; visibility: visible; opacity: 1;'
+            sidebarToggleBtn.style.cssText = 'left: 236px;'
+          } else {
+            sidebarCollapseMenu.classList.remove('open')
+            sidebarCollapseMenu.style.cssText = 'width: 32px; visibility: hidden; opacity: 0;'
+            sidebarToggleBtn.style.cssText = 'left: 10px;'
+          }
+        })
+      })
+    </script>
+    <style>
+      #particles-js {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0; /* Behind the form */
+      }
+      
+      form {
+        z-index: 10; /* Ensure the form is on top */
+        position: relative;
+      }
+      /* ---- reset ---- */
+      
+      /* ---- particles.js container ---- */
+      
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /**background-color: #462b79; **/
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+      }
+      
+      .max-w-md.w-full.mx-auto.shadow-xl2.shadow-lg.shadow-blue-500\/50.p-8.relative.mt-12 {
+        background-color: #ffffffc4;
+        border-radius: 10px;
+      }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    {% component_css_dependencies %}
+  </head>
+
+  <body class="bg-gray-50 font-serif leading-normal tracking-normal">
+    {% comment %} <div id="particles-js" class="absolute inset-0 z-0"></div> {% endcomment %}
+    <div id="particles-js"></div>
+
+    {% if messages %}
+      <div class="fixed top-0 right-0 m-4 space-y-2">
+        {% for message in messages %}
+          <div class="
+					px-4 py-3 rounded-lg shadow-md 
+					{% if message.tags == 'success' %}bg-green-100 text-green-700{% endif %}
+					{% if message.tags == 'error' %}bg-red-100 text-red-700{% endif %}
+					{% if message.tags == 'info' %}bg-blue-100 text-blue-700{% endif %}
+					{% if message.tags == 'warning' %}bg-yellow-100 text-yellow-700{% endif %}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="container mx-auto">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <script>
+      setTimeout(() => {
+        const messages = document.querySelectorAll('.message')
+        messages.forEach((message) => {
+          message.remove()
+        })
+      }, 5000) // Adjust the timeout duration as needed
+    </script>
+    {% component_js_dependencies %}
+  </body>
+</html>
