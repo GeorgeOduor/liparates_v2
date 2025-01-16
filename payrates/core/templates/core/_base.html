@@ -80,7 +80,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-    {% component_css_dependencies %}
+    {% load viewcomponent_tags %}
   </head>
 
   <body class="bg-gray-50 font-serif leading-normal tracking-normal">
@@ -112,6 +112,6 @@
         })
       }, 5000) // Adjust the timeout duration as needed
     </script>
-    {% component_js_dependencies %}
+    {% comment %} {% component_js_dependencies %} {% endcomment %}
   </body>
 </html>

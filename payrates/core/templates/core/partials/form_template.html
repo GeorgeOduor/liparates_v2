@@ -1,0 +1,26 @@
+<form class="mt-12" method="{{ method }}" action="{{ action }}">
+  {% csrf_token %}
+  {% if title %}
+    <h3 class="text-xl font-bold text-blue-500 mb-4 text-center">{{ title }}</h3>
+  {% endif %}
+  {% if description %}
+    <p class="text-sm mb-8 text-center text-gray-800">{{ description }}</p>
+  {% endif %}
+  <div class="space-y-4">
+    {% for field in form %}
+      <div>
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}
+          <p class="text-sm text-gray-600">{{ field.help_text }}</p>
+        {% endif %}
+        {% for error in field.errors %}
+          <p class="text-sm text-red-600">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mt-4">
+    <button type="submit" class="w-full py-4 px-8 text-sm tracking-wide font-semibold text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">{{ submit_label }}</button>
+  </div>
+</form>

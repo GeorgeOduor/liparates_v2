@@ -46,6 +46,7 @@ class OperatingCounty(models.Model):
     
     def __str__(self):
         return self.name
+
 class Profile(models.Model):
     ROLE_CHOICES = [
         ('user', 'Normal User'),
